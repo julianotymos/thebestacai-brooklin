@@ -1,18 +1,16 @@
 import streamlit as st
 
-def add_google_analytics():
-    ga_script = """
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q98R3VDZ5N"></script>
+def add_google_analytics(measurement_id="G-Q98R3VDZ5N"):
+    st.markdown(f"""
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-Q98R3VDZ5N');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){{dataLayer.push(arguments);}}
+        gtag('js', new Date());
+        gtag('config', '{measurement_id}');
     </script>
-    """
-    st.markdown(ga_script, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 #add_google_analytics()
 #

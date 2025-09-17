@@ -26,9 +26,8 @@ st.set_page_config(page_title=STORE_NAME,  layout="centered")
 #with col1:
 #    st.image(LOGO_PATH, width=80)  # ajusta o tamanho do logo
 #with col2:
-add_google_analytics()
 st.title(f"{STORE_NAME}")
-
+add_google_analytics
 st.subheader("Faça pedidos no delivery e resgate seu prêmio na loja!")
 
 # -----------------------------

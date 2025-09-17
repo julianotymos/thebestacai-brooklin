@@ -6,6 +6,7 @@ import pandas as pd
 from read_customer_coupons import read_99food_coupons_data , read_ifood_coupons_data , validate_number_input
 from validate_docbr import CPF
 from insert_coupon import insert_coupon
+from add_google_analytics import add_google_analytics , send_ga_event
 cpf_validator = CPF()
 
 # -----------------------------
@@ -25,6 +26,7 @@ st.set_page_config(page_title=STORE_NAME,  layout="centered")
 #with col1:
 #    st.image(LOGO_PATH, width=80)  # ajusta o tamanho do logo
 #with col2:
+add_google_analytics()
 st.title(f"{STORE_NAME}")
 
 st.subheader("Faça pedidos no delivery e resgate seu prêmio na loja!")
@@ -148,7 +150,7 @@ def on_resgatar_300_click():
 with tabs[1]:
     
     st.header("🔍 Consultar meus pontos")
-
+    send_ga_event('Entra Consultar pontos')
     # Botão de rádio para selecionar o canal de consulta
     selected_channel = st.radio(
         "Selecione o canal de venda:",
@@ -167,6 +169,7 @@ with tabs[1]:
     
     if st.button("Consultar"):
         # A lógica da sua função on_consultar_click agora vai aqui
+        send_ga_event('Clica Consultar pontos')
         if not identifier:
             st.session_state.show_results = False
             st.error("Digite um identificador para consultar.")

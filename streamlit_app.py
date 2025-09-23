@@ -8,6 +8,7 @@ from validate_docbr import CPF
 from insert_coupon import insert_coupon
 from add_google_analytics import add_google_analytics , send_ga_event
 cpf_validator = CPF()
+#add_google_analytics
 
 # -----------------------------
 # Configurações
@@ -27,7 +28,6 @@ st.set_page_config(page_title=STORE_NAME,  layout="centered")
 #    st.image(LOGO_PATH, width=80)  # ajusta o tamanho do logo
 #with col2:
 st.title(f"{STORE_NAME}")
-add_google_analytics
 st.subheader("Faça pedidos no delivery e resgate seu prêmio na loja!")
 
 # -----------------------------

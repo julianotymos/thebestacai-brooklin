@@ -6,9 +6,9 @@ import pandas as pd
 from read_customer_coupons import read_99food_coupons_data , read_ifood_coupons_data , validate_number_input
 from validate_docbr import CPF
 from insert_coupon import insert_coupon
-from add_google_analytics import add_google_analytics , send_ga_event
+from add_google_analytics import add_google_analytics , track_tab , track_button
 cpf_validator = CPF()
-#add_google_analytics
+add_google_analytics()
 
 # -----------------------------
 # Configurações
@@ -41,12 +41,13 @@ tabs = st.tabs(["Como Funciona", "Consultar Pontos"])
 with tabs[0]:
     st.header("🎯 Como funciona :")
     st.markdown("""
-    1. Peça pelo iFood ou 99Food — os pontos são acumulados separadamente em cada plataforma.  
-    2. A cada pedido você recebe **1 ponto**.  
+    1. Faça seus pedidos pelo iFood ou pelo 99Food. (Os pontos de cada aplicativo são acumulados separadamente).  
+    2. A cada pedido realizado, você ganha **1 ponto**.  
     3. **Junte 10 pontos** e troque por **1 copo de 300ml** montado do seu jeito.  
-    4. **Junte 15 pontos** e troque por **1 copo de 500ml** montado do seu jeito.  
-    5. Apresente o codigo no caixa **na loja**.
-    6. Promoção válida apenas para resgate no balcão. Pedidos válidos a partir de 12/08/2025.  
+    4. **Junte 15 pontos** e troque por **1 copo de 500ml** montado do seu jeito.
+    5. Para acompanhar sua pontuação e gerar o cupom, acesse a aba "Consultar Pontos"  
+    6. Mostre o código do cupom no caixa da loja para resgatar.
+    7. Promoção válida somente para resgates presenciais na loja. Pedidos acumulam pontos a partir de 12/08/2025.  
     """)
 #    st.image(
 #        "DSC01260.png",
@@ -67,6 +68,7 @@ with tabs[0]:
         width=700,   # largura do mapa
         height=450   # altura do mapa
     )
+    track_tab("Página Como Funciona")
 # -----------------------------
 # Aba 2: Consultar Pedidos
 # -----------------------------
@@ -147,9 +149,9 @@ def on_resgatar_300_click():
     # st.rerun() foi removido
 
 with tabs[1]:
-    
+    track_tab("Página Consultar Pontos")
+
     st.header("🔍 Consultar meus pontos")
-    send_ga_event('Entra Consultar pontos')
     # Botão de rádio para selecionar o canal de consulta
     selected_channel = st.radio(
         "Selecione o canal de venda:",
@@ -168,7 +170,8 @@ with tabs[1]:
     
     if st.button("Consultar"):
         # A lógica da sua função on_consultar_click agora vai aqui
-        send_ga_event('Clica Consultar pontos')
+        track_button("Consultar")
+
         if not identifier:
             st.session_state.show_results = False
             st.error("Digite um identificador para consultar.")

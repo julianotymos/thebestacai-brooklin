@@ -56,7 +56,7 @@ with tabs[0]:
     st.markdown("Clique no link para falar conosco no WhatsApp:")
 
     phone_number = "5511970370720" # Exemplo: 55 (Brasil) 11 (DDD) 987654321 (número)
-    pre_filled_message = "Olá, gostaria de saber mais sobre a promoção de cupons!"
+    pre_filled_message = "Olá, gostaria de saber mais sobre a promoção de comprar no delivery e e resgate seu prêmio na loja!"
 
     link_url = f"https://wa.me/{phone_number}?text={pre_filled_message}"
 

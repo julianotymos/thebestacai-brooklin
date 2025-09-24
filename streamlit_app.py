@@ -5,9 +5,13 @@ import string
 import pandas as pd
 from read_customer_coupons import read_99food_coupons_data , read_ifood_coupons_data , validate_number_input
 from validate_docbr import CPF
+import uuid
+
 from insert_coupon import insert_coupon
 from add_google_analytics import add_google_analytics , track_tab , track_button
 cpf_validator = CPF()
+if "session_id" not in st.session_state:
+    st.session_state.session_id = str(uuid.uuid4())
 add_google_analytics()
 
 # -----------------------------
